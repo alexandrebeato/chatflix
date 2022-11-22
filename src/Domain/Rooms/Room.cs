@@ -17,9 +17,6 @@ namespace Domain.Rooms
         {
             public static Room CreateInstance(Guid id, string name, DateTime createdAt) =>
                 new(id, name, createdAt);
-
-            public static Room CreateNewRoom(string name) =>
-                new(CreateId(), name, DateTime.UtcNow);
         }
     }
 }

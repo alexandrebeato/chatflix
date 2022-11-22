@@ -19,9 +19,6 @@ namespace Domain.Users
         {
             public static User CreateInstance(Guid id, string userName, string password, DateTime createdAt) =>
                 new(id, userName, password, createdAt);
-
-            public static User CreateNewUser(string userName, string password) =>
-                new(CreateId(), userName, password, DateTime.UtcNow);
         }
     }
 }

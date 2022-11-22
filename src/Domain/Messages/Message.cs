@@ -22,9 +22,6 @@ namespace Domain.Messages
         {
             public static Message CreateInstance(Guid id, Guid roomId, Guid userId, string userName, string content, DateTime createdAt) =>
                 new(id, roomId, userId, userName, content, createdAt);
-
-            public static Message CreateNewMessage(Guid userId, Guid roomId, string userName, string content) =>
-                new(CreateId(), roomId, userId, userName, content, DateTime.UtcNow);
         }
     }
 }
