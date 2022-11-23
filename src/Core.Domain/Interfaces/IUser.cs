@@ -6,7 +6,7 @@ namespace Core.Domain.Interfaces
     {
         string Identity { get; }
         Guid GetAuthenticatedUserId();
-        string GetAuthenticatedUserName();
+        string? GetAuthenticatedUserName();
         bool IsAuthenticated();
         IEnumerable<Claim> GetPermissions();
     }

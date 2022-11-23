@@ -15,9 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infra.CrossCutting
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
-        public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
+        public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
