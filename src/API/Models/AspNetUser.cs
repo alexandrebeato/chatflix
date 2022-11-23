@@ -10,7 +10,7 @@ namespace API.Models
         public AspNetUser(IHttpContextAccessor accessor) =>
             _accessor = accessor;
 
-        public string Identity => _accessor.HttpContext.User.Identity.Name;
+        public string? Identity => _accessor?.HttpContext?.User?.Identity?.Name;
 
         public Guid GetAuthenticatedUserId() =>
             IsAuthenticated() ? Guid.Parse(_accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value) : Guid.Empty;
@@ -18,8 +18,8 @@ namespace API.Models
         public string? GetAuthenticatedUserName() =>
             IsAuthenticated() ? _accessor?.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value : null;
 
-        public IEnumerable<Claim> GetPermissions() =>
-            _accessor.HttpContext.User.Claims;
+        public IEnumerable<Claim>? GetPermissions() =>
+            _accessor?.HttpContext?.User?.Claims;
 
         public bool IsAuthenticated()
         {

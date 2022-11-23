@@ -42,9 +42,9 @@ namespace API.Configurations
 
         public static string CreateAuthenticationToken(IConfiguration configuration, UserModel userModel)
         {
-            var issuer = configuration["JwtToken:Issuer"];
-            var audience = configuration["JwtToken:Audience"];
-            var key = Encoding.ASCII.GetBytes(configuration["JwtToken:Key"]);
+            var issuer = configuration["jwt:issuer"];
+            var audience = configuration["jwt:audience"];
+            var key = Encoding.ASCII.GetBytes(configuration["jwt:key"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
