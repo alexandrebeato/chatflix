@@ -12,9 +12,13 @@ namespace CommandStack.Messages.Handlers
                                                          IRequestHandler<DeleteMessageCommand, bool>
     {
         private readonly IMessageRepository _messageRepository;
+        private readonly IUser _user;
 
-        public MessageCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IMessageRepository messageRepository) : base(mediator, notifications) =>
+        public MessageCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IMessageRepository messageRepository, IUser user) : base(mediator, notifications)
+        {
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
+            _user = user ?? throw new ArgumentNullException(nameof(user));
+        }
 
         public async Task<bool> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
         {
@@ -31,6 +35,12 @@ namespace CommandStack.Messages.Handlers
             if (message is null)
             {
                 await _mediator.RaiseEvent(new DomainNotification(request.NotificationType, "Message not found."));
+                return false;
+            }
+
+            if (message.User.Id != _user.GetAuthenticatedUserId())
+            {
+                await _mediator.RaiseEvent(new DomainNotification(request.NotificationType, "You are not allowed to delete this message."));
                 return false;
             }
 

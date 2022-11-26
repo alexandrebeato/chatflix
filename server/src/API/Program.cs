@@ -12,6 +12,11 @@ builder.Services.ConfigureAutoMapper();
 builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 builder.Services.ConfigureServicesAuthentication(builder.Configuration);
 
+builder.Services.AddCors(p => p.AddPolicy("chatflix", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +29,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseCors("chatflix");
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

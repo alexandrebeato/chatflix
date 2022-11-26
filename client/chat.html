@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatflix</title>
+    <link
+      rel="stylesheet"
+      href="./assets/lib/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/chat.css" />
+  </head>
+  <body>
+    <br /><br />
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col text-center">
+          <img src="./assets/img/logo.png" alt="Logo" />
+          <br /><br />
+          <div class="row">
+            <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-12">
+              <!-- SIGN-IN -->
+              <div v-if="!isAuthenticated" class="row">
+                <div class="col">
+                  <div class="card signin">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col">
+                          {{ applicationMessage }}
+                          <br />
+                          <br />
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Username"
+                            v-model="user.userName"
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                        <div class="col">
+                          <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Password"
+                            v-model="user.password"
+                          />
+                        </div>
+                      </div>
+                      <br />
+                      <div class="row">
+                        <div class="col">
+                          <button
+                            @click="signIn()"
+                            class="btn btn-primary signinButton"
+                          >
+                            Sign In
+                          </button>
+                          <button
+                            @click="signUp()"
+                            class="btn btn-outline-primary signinButton"
+                          >
+                            Sign Up
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ROOM SELECT -->
+              <div v-if="isAuthenticated && !isChatting" class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col text-center">SELECT THE ROOM:</div>
+                  </div>
+                  <hr />
+                  <div
+                    v-for="room in rooms"
+                    @click="selectRoom(room)"
+                    class="form-control roomSelector"
+                  >
+                    {{ room.name }}
+                  </div>
+                  <div v-if="rooms.length === 0">No room created</div>
+                  <br />
+                  <br />
+                  <div class="row">
+                    <div class="col text-center">OR CREATE A ROOM:</div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Room Name"
+                        v-model="newRoomName"
+                      />
+                    </div>
+                    <div class="col-4 text-right">
+                      <button
+                        @click="createRoom()"
+                        class="btn btn-primary btn-block"
+                      >
+                        Create
+                      </button>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+                <div class="card-footer">
+                  <button @click="logout()" class="btn btn-link">Exit</button>
+                </div>
+              </div>
+              <!-- CHAT -->
+              <div v-if="isAuthenticated && isChatting" class="card chat">
+                <div class="card-title"><b>Room: </b> {{ room.name }}</div>
+                <div id="messages" class="card-body">
+                  <ul>
+                    <li
+                      v-for="message in messages"
+                      :class="{ him: message.user.id !== user.id, me: message.user.id === user.id }"
+                    >
+                      <b v-if="message.user.id !== user.id"
+                        >{{ message.user.userName }}: </b
+                      >{{ message.content }}
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-10">
+                      <textarea
+                        class="form-control"
+                        placeholder="Type a message..."
+                        v-model="newMessage"
+                        @keyup.native.enter="sendMessage()"
+                      ></textarea>
+                    </div>
+                    <div class="col-2">
+                      <button
+                        class="btn btn-primary sendButton"
+                        @click="sendMessage()"
+                      >
+                        <b>></b>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button @click="leaveRoom()" class="btn btn-link">
+                        Leave room
+                      </button>
+                    </div>
+                    <div class="col-6">
+                      <button @click="logout()" class="btn btn-link">
+                        Exit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/lib/vuejs/vue.js"></script>
+    <script src="./assets/lib/axios/axios.min.js"></script>
+    <script src="./assets/js/chat.js"></script>
+  </body>
+</html>

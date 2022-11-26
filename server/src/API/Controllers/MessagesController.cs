@@ -57,5 +57,14 @@ namespace API.Controllers
 
             return Response(_mapper.Map<MessageModel>(await _messageRepository.GetById(model.Id)));
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var command = new DeleteMessageCommand(id);
+            await _mediator.SendCommand(command);
+            return Response();
+        }
     }
 }
