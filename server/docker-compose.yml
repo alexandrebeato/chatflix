@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo
+    networks:
+      - chatflix
+    ports:
+      - 27017:27017
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - chatflix
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+networks:
+  chatflix: {}
