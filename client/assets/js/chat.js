@@ -16,8 +16,8 @@ const app = createApp({
       this.resetForm();
     },
     resetForm() {
-      this.user.userName = 'alexandre.beato';
-      this.user.password = '147147';
+      this.user.userName = '';
+      this.user.password = '';
     },
     signIn() {
       axios({

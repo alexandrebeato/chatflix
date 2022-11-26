@@ -69,7 +69,7 @@ queueService.SubscribeAsync("stock", async (message) =>
         Console.WriteLine(JsonConvert.SerializeObject(stooqResult));
 
         foreach (var symbol in stooqResult.Symbols)
-            await messageRepository.Insert(Message.Factory.CreateInstance(Guid.NewGuid(), chatCommand.RoomId.Value, Guid.Empty, "STOCK BOT", $"{symbol.Symbol} quote is ${symbol.Close} per share", DateTime.UtcNow));
+            await messageRepository.Insert(Message.Factory.CreateInstance(Guid.NewGuid(), chatCommand.RoomId.Value, Guid.Empty, "BOT", $"{symbol.Symbol} quote is ${symbol.Close} per share", DateTime.UtcNow));
     }
 
 });
