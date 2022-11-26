@@ -11,9 +11,9 @@
 * Go to ```server``` folder.
 * Run the command ```docker-compose up -d```.
 * Now go to ```server/src/Stock.Service``` folder.
-* Run the command ```dotnet build run && dotnet run```
+* Run the command ```dotnet build && dotnet run``` and **DONT CLOSE THAT TERMINAL**.
 * Now go to ```server/src/API``` folder.
-* Run the command ```dotnet build run && dotnet run```
+* Run the command ```dotnet build && dotnet run``` and **DONT CLOSE THAT TERMINAL**.
 * Now go to the ```client``` folder and open how many ```chat.html``` you want to.
 
 ## Give a Star! :star:
