@@ -2,7 +2,7 @@ using Core.Domain.Entities;
 
 namespace Core.Domain.Interfaces
 {
-    public interface IRepository<T> where T : Entity<T>
+    public interface IMongoRepository<T> where T : Entity<T>
     {
         Task Insert(T entity);
         Task Update(T entity);

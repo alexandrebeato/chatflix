@@ -32,7 +32,7 @@ namespace API.Configurations
             services.AddScoped<IUser, AspNetUser>();
 
             // Domain
-            services.RegisterServices(configuration);
+            services.RegisterServices();
         }
     }
 }

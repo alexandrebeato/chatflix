@@ -10,6 +10,6 @@ namespace CommandStack.Messages.Adapters
             Message.Factory.CreateInstance(command.Id, command.RoomId, command.UserId, command.UserName, command.Content, command.CreatedAt);
 
         public static MessageCreatedEvent ToMessageCreatedEvent(this Message message) =>
-            new MessageCreatedEvent(message.Id, message.Content);
+            new MessageCreatedEvent(message.Id, message.RoomId, message.Content);
     }
 }

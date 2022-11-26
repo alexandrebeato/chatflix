@@ -5,20 +5,24 @@ using CommandStack.Rooms.Commands;
 using CommandStack.Rooms.Handlers;
 using CommandStack.Users.Commands;
 using CommandStack.Users.Handlers;
+using Core.Domain.Interfaces;
 using Domain.Messages.Repository;
 using Domain.Rooms.Repository;
 using Domain.Users.Repository;
 using Infra.Data;
+using Infra.Services;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infra.CrossCutting
 {
     public static class Bootstrapper
     {
-        public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterServices(this IServiceCollection services)
         {
+            // RabbitMQ
+            services.AddSingleton<IQueueService, QueueService>();
+
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();

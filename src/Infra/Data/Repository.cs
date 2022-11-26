@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Infra.Data
 {
-    public class Repository<T> : IRepository<T> where T : Entity<T>
+    public class Repository<T> : IMongoRepository<T> where T : Entity<T>
     {
         private readonly IConfiguration _configuration;
         private readonly IMongoClient _mongoClient;
