@@ -43,6 +43,6 @@ If you liked the project or if Chatflix helped you, please give a star ;)
 - Repository
 
 ## About:
-The Equinox Project was developed by [Alexandre Beato](hhttps://www.instagram.com/alexandrebeato/) under the [MIT license](LICENSE).
+The Chatflix Project was developed by [Alexandre Beato](hhttps://www.instagram.com/alexandrebeato/) under the [MIT license](LICENSE).
 
 Made with ♥ by Ale
