@@ -6,6 +6,156 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #0f0f0f;
-  color: #fff;
+}
+
+.logo {
+  margin: 20px;
+  opacity: 0.8;
+}
+
+.background-container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  background: hsla(20, 88%, 55%, 1);
+
+  background: linear-gradient(
+    135deg,
+    hsla(20, 88%, 55%, 1) 0%,
+    hsla(311, 59%, 37%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    135deg,
+    hsla(20, 88%, 55%, 1) 0%,
+    hsla(311, 59%, 37%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    135deg,
+    hsla(20, 88%, 55%, 1) 0%,
+    hsla(311, 59%, 37%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F16A27", endColorstr="#952681", GradientType=1 );
+}
+
+.transparent-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.vertical-separator {
+  border-left: 1px solid #ccc;
+  height: 100%;
+  margin: 0 20px;
+}
+
+.chat-list {
+  height: 60vh;
+  overflow-y: hidden;
+}
+
+.chat-list .chat-unique {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-list .chat-unique:hover {
+  background: #eee;
+}
+
+.chat-list .chat-unique.active {
+  background: #eee;
+}
+
+.chat-list .chat-unique .name {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.chat-list .chat-unique .preview {
+  font-size: 0.8rem;
+  color: #666;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chat .title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.chat .title .close {
+  float: right;
+  cursor: pointer;
+}
+
+.chat .messages {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.chat .messages .message {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
+
+.chat .messages .message .message-content {
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  max-width: 80%;
+  background: hsla(20, 88%, 55%, 1);
+  color: hsla(0, 0%, 100%, 1);
+}
+
+.chat .messages .message.my .message-content {
+  background: hsla(0, 0%, 100%, 1);
+  float: right;
+  color: hsla(20, 88%, 55%, 1);
+  margin-bottom: 20px;
+}
+
+.chat .new-message {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat .new-message input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 0.9em;
+}
+
+.chat .new-message button {
+  background: hsla(20, 88%, 55%, 1);
+  color: hsla(0, 0%, 100%, 1);
+  border: none;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.chat .new-message button:hover {
+  background: hsla(20, 88%, 55%, 0.8);
+}
+
+.chat .new-message button:disabled {
+  background: hsla(20, 88%, 55%, 0.5);
+  cursor: not-allowed;
 }
